@@ -43,6 +43,7 @@
             <th>No</th>
 
             <th>Name</th>
+            <th>Category</th>
 
             <th>Details</th>
             <th>Price</th>
@@ -58,6 +59,7 @@
             <td>{{ $key+1 }}</td>
 
             <td>{{ $product->name }}</td>
+            <td>{{ $product->category->name }}</td>
 
             <td>{{ $product->detail }}</td>
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -14,6 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+
+
         $products = Product::all();
         return view('product.index',['products'=>$products]);
     }
@@ -25,7 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $categories = Category::all();
+        return view('product.create',['categories' => $categories]);
     }
 
     /**
@@ -39,6 +44,7 @@ class ProductController extends Controller
         $request->validate([
 
             'name' => 'required',
+            'category_id'=>'required',
 
             'detail' => 'required',
             'price' => 'required',
@@ -77,7 +83,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('product.edit',['product'=>$product]);
+$categories=Category::all();
+        return view('product.edit',['product'=>$product,'categories' => $categories]);
 
     }
 
@@ -93,7 +100,7 @@ class ProductController extends Controller
         $request->validate([
 
             'name' => 'required',
-
+            'category_id'=>'required',
             'detail' => 'required',
             'price' => 'required',
 
